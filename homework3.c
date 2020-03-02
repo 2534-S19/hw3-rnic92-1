@@ -36,6 +36,10 @@ int main(void)
         // TODO: If Timer0 has expired, increment count0.
         // YOU MUST WRITE timer0expired IN myTimer.c
 
+        if(timer0Expired())
+        {
+           count0++;
+        }
 
 
         // TODO: If Timer1 has expired, update the button history from the pushbutton value.
@@ -64,6 +68,29 @@ void initBoard()
 // Since count is an unsigned integer, you can mask the value in some way.
 void changeLaunchpadLED2(unsigned int count)
 {
+    unsigned int a = count%3;
+switch(a)
+{
+    case 1:
+        turnOn_LaunchpadLED2Red();
+        turnOff_LaunchpadLED2Blue();
+        turnOff_LaunchpadLED2Green();
+        break;
+    case 2:
+        turnOff_LaunchpadLED2Red();
+        turnOn_LaunchpadLED2Blue();
+        turnOff_LaunchpadLED2Green();
+        break;
+    case 3:
+        turnOff_LaunchpadLED2Red();
+        turnOff_LaunchpadLED2Blue();
+        turnOn_LaunchpadLED2Green();
+        break;
+    default:
+        turnOn_LaunchpadLED1();
+        break;
+}
+
 
 }
 
