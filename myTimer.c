@@ -1,10 +1,10 @@
 /*
  * myTimer.c
  *
- *  Created on:
- *      Author:
+ *  Created on: 04Mar20
+ *      Author: Nicolas Rohr
  */
-
+#define UINTMAX 65536
 #include <ti/devices/msp432p4xx/driverlib/driverlib.h>
 #include "myTimer.h"
 
@@ -13,9 +13,9 @@
 void initTimer(unsigned int timer, unsigned int preScaler, unsigned int count)
 {
 
-    Timer32_initModule(timer, preScaler, TIMER32_32BIT, 0);
+    Timer32_initModule(timer, preScaler, TIMER32_32BIT, TIMER32_PERIODIC_MODE);
     Timer32_setCount(timer,count);
-    Timer32_startTimer(timer, 0);
+    Timer32_startTimer(timer, REPEAT);
 
 }
 
@@ -23,7 +23,7 @@ void initTimer(unsigned int timer, unsigned int preScaler, unsigned int count)
 // You have been given a such a function in the lecture slides.
 bool timer0Expired(void)
 {
-    static unsigned int previousSnap = 65536;
+    static unsigned int previousSnap = UINTMAX;
     unsigned int currentSnap;
     bool returnValue;
 
@@ -38,7 +38,7 @@ bool timer0Expired(void)
 // Since we only have two timers, later in the course we will create software timers that use a common time base.
 bool timer1Expired(void)
 {
-    static unsigned int previousSnap2 = 65536;
+    static unsigned int previousSnap2 = UINTMAX;
     unsigned int currentSnap;
     bool returnValue;
 

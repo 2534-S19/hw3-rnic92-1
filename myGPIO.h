@@ -1,8 +1,8 @@
 /*
  * myGPIO.h
  *
- *  Created on:
- *      Author:
+ *  Created on: 04Mar20
+ *      Author: Nicolas Rohr
  *
  */
 
